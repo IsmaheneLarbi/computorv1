@@ -1,4 +1,4 @@
-# computorv1
+# ComputorV1
 A program that solves polynomial equations of the 2nd degree
 # Usage
 You need to enter the equation with the terms ordered starting from the lowest power up 'til the biggest, like this:
@@ -12,7 +12,7 @@ then its degree,
 then its discriminant's sign -if need be-
 then the solution(s)  IF they exist
 
-Note*
+#Note*
 This program doesn't solve equations of a degree greater than 2.
 
 Enjoy :)
