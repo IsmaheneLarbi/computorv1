@@ -57,19 +57,22 @@ def format_output(flt):
         flt = float("{0:.6f}".format(flt))
     return (flt)
 
-def reduce(arr1, arr2):
+def list_sub(arr1, arr2):
     values = []
     for i, val in enumerate(arr1):
         if (i < len(arr1) and i < len(arr2)):
             values.append(print_floats(val - arr2[i]))
+    return values
+
+def reduce(eq):
     i = -1
-    while (len(values) > 3):
-        if (values[i] == 0):
-            del values[-1]
+    while (len(eq) > 1):
+        if (eq[i] == 0):
+            del eq[-1]
         else:
             break
-    print("Reduced form:", format_polynom(values))
-    return values
+    print("Reduced form:", format_polynom(eq))
+    return(len(eq) - 1)
 
 def solve(eq, degree):
     if (is_greater_than_two(eq)):
@@ -97,13 +100,21 @@ def solve(eq, degree):
         print(format_output((-eq[1] + sqrt) / (2 * eq[2])))
     elif (discr == 0):
         print("The solution is:")
-        print(print_floats(-eq[1] / 2 * eq[2]))
+        print((-eq[1] / (2 * eq[2])))
     else:
         print("Discriminant is strictly negative, the two solutions are:")  
-        eq[1] = -eq[1] / 2 * eq[2]
-        sqrt = sqrt / 2 * eq[2]
-        print((str(format_output(eq[1])) + " - i * " + str(format_output(sqrt))))
-        print((str(format_output(-eq[1])) + " + i * " + str(format_output(sqrt))))
+        eq[1] = -eq[1] / (2 * eq[2])
+        sqrt = sqrt / (2 * eq[2])
+        b = str(format_output(eq[1]))
+        sol = " i * " + str(format_output(sqrt))
+        if (eq[1] != 0):
+            sol1 = (b + " -" + sol)
+            sol2 = (b + " +" + sol)
+        else:
+            sol1 = " -" + sol
+            sol2 = sol
+        print(sol1)
+        print(sol2)
 
 def ComputorV1():
     if len(sys.argv) != 2:
@@ -113,8 +124,8 @@ def ComputorV1():
     degree = max(get_degree(sides[0]), get_degree(sides[1]))
     eq = get_values(sides[0], degree)
     if (sides[1].strip() != str(0)):
-        eq = reduce(get_values(sides[0], degree), get_values(sides[1], degree))
-        degree = len(eq) - 1
+        eq = list_sub(get_values(sides[0], degree), get_values(sides[1], degree))
+    degree = reduce(eq)
     solve(eq, degree)
 
 if (__name__ == "__main__"):
