@@ -12,7 +12,7 @@ then its degree,
 then its discriminant's sign -if need be-
 then the solution(s)  IF they exist
 
-#Note*
+# Note*
 This program doesn't solve equations of a degree greater than 2.
 
 Enjoy :)
